@@ -1,37 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/28 18:56:42 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/05/28 19:18:12 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/05/28 19:17:30 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/05/28 19:33:11 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_pa(t_list **firsta, t_list **firstb)
+void	ft_ra(t_list **firsta)
 {
 	t_list	*temp;
 
-	temp = (*firstb);
-	if (*firstb)
+	if (*firsta && (*firsta)->next)
 	{
-		(*firstb) = (*firstb)->next;
-		ft_lstadd_front(firsta, temp);
+		temp = *firsta;
+		*firsta = temp->next;
+		(*firsta)->previous = NULL;
+		temp->next = NULL;
+		ft_lstadd_back(firsta, temp);
 	}
 }
 
-void	ft_pb(t_list **firsta, t_list **firstb)
+void	ft_rb(t_list **firstb)
 {
 	t_list	*temp;
 
-	temp = (*firsta);
-	if (*firsta)
+	if (*firstb && (*firstb)->next)
 	{
-		(*firsta) = (*firsta)->next;
-		ft_lstadd_front(firstb, temp);
+		temp = *firstb;
+		*firstb = temp->next;
+		(*firstb)->previous = NULL;
+		temp->next = NULL;
+		ft_lstadd_back(firstb, temp);
 	}
+}
+
+void	ft_rr(t_list **firsta, t_list **firstb)
+{
+	ft_ra(firsta);
+	ft_rb(firstb);
 }
