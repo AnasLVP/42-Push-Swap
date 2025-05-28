@@ -6,38 +6,53 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:56:03 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/05/28 13:59:32 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/05/28 19:12:30 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*make_astack(char **args, int size)
+void	create_list(t_list **first, char **av, int ac)
 {
-	int	i;
-	int	*res;
+	int		i;
+	t_list	*temp;
+	int		*content;
 
 	i = 1;
-	res = malloc(sizeof(int) * (size - 1));
-	if (!res)
-		return (NULL);
-	while (i < size)
+	while (i < ac)
 	{
-		res[i - 1] = (int)ft_atoi(args[i]);
+		content = malloc(sizeof(int));
+		if (!content)
+		{
+			ft_lstclear(first, &free);
+			return ;
+		}
+		*content = (int)ft_atoi(av[i]);
+		temp = ft_lstnew(content);
+		ft_lstadd_back(first, temp);
 		i++;
 	}
-	return (res);
+}
+
+void	printlist(void *cont)
+{
+	printf("%d\n", *(int *)cont);
+	return ;
 }
 
 int	main(int ac, char **av)
 {
-	int	*stacka;
+	t_list	*firsta;
+	t_list	*firstb;
 
+	firsta = NULL;
+	firstb = NULL;
 	if (ac == 1)
 		return (0);
 	if (!parse_args(av) || !only_uniques(av, ac - 1))
 		return (write(2, "Error\n", 6));
-	stacka = make_astack(av, ac);
-	free(stacka);
+	create_list(&firsta, av, ac);
+	ft_lstiter(firsta, &printlist);
+	ft_lstclear(&firsta, &free);
 	return (0);
 }
