@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:52:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/05/30 17:04:53 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:20:58 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ void	create_list(t_list **first, char **av, int ac);
 int		ft_lstsorted(t_list **first);
 void	ft_lstnormalize(t_list **list);
 t_list	*ft_lstmin(t_list **list);
+
+/*	struct	*/
+typedef struct s_elem
+{
+	int	value;
+	int	rank;
+}		t_elem;
 
 /*	Push Swap Operations	*/
 void	ft_sa(t_list **first);
