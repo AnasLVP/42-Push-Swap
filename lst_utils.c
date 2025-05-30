@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:00:29 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/05/28 19:35:18 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:07:48 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,66 @@ void	create_list(t_list **first, char **av, int ac)
 
 void	ft_lstswap(t_list **first)
 {
-	(*first)->previous = (*first)->next;
-	(*first)->next = (*first)->next->next;
-	(*first)->previous->next = (*first);
-	(*first)->previous->previous = NULL;
-	(*first) = (*first)->previous;
+	t_list	*second;
+
+	if (!first || !*first || !(*first)->next)
+		return ;
+	second = (*first)->next;
+	(*first)->next = second->next;
+	if (second->next)
+		second->next->previous = *first;
+	second->previous = NULL;
+	second->next = *first;
+	(*first)->previous = second;
+	*first = second;
+}
+
+int	ft_lstsorted(t_list **first)
+{
+	t_list	*tempfirst;
+
+	tempfirst = *first;
+	if (!tempfirst || !(tempfirst)->next)
+		return (1);
+	while (tempfirst->next)
+	{
+		if (*(int *)tempfirst->next->content < *(int *)tempfirst->content)
+			return (0);
+		tempfirst = tempfirst->next;
+	}
+	return (1);
+}
+
+t_list	*ft_lstmin(t_list **list)
+{
+	t_list	*temp;
+	t_list	*res;
+
+	temp = *list;
+	res = temp;
+	while (temp)
+	{
+		if (*(int *)temp->content < *(int *)res->content)
+			res = temp;
+		temp = temp->next;
+	}
+	return (res);
+}
+
+void	ft_lstnormalize(t_list **list)
+{
+	t_list	*temp;
+	t_list	*first;
+	int		num;
+	int		size;
+
+	first = *list;
+	size = ft_lstsize(first);
+	num = 0;
+	while (num < size)
+	{
+		temp = ft_lstmin(list);
+		*(int *)temp->content = num;
+		num++;
+	}
 }
