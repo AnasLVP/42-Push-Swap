@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:52:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/05/30 17:20:58 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/05/31 16:01:42 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int		parse_args(char **args);
 /*	lists	*/
 void	ft_lstswap(t_list **first);
 void	create_list(t_list **first, char **av, int ac);
-int		ft_lstsorted(t_list **first);
+int		ft_lstsorted(t_list *first, int recurse);
 void	ft_lstnormalize(t_list **list);
-t_list	*ft_lstmin(t_list **list);
+void	push_sublists(t_list **firsta, t_list **firstb, int maxrank,
+			int minrank);
 
 /*	struct	*/
 typedef struct s_elem
