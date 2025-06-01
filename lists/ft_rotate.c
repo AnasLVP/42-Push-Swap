@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstswap.c                                       :+:      :+:    :+:   */
+/*   ft_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/31 15:40:58 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/01 11:37:07 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/06/01 17:12:49 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/06/01 17:17:06 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_lstswap(t_list **first)
+void	rotate(void (*ra)(t_list **), void (*rra)(t_list **), t_list **first,
+		int pos)
 {
-	t_list	*second;
+	int	i;
 
-	if (!first || !*first || !(*first)->next)
-		return ;
-	second = (*first)->next;
-	(*first)->next = second->next;
-	if (second->next)
-		second->next->previous = *first;
-	second->previous = NULL;
-	second->next = *first;
-	(*first)->previous = second;
-	*first = second;
+	if (pos <= ft_lstsize(*first) / 2)
+	{
+		i = 1;
+		while (i < pos)
+		{
+			ra(first);
+			i++;
+		}
+	}
+	else
+	{
+		i = ft_lstsize(*first);
+		while (i >= pos)
+		{
+			rra(first);
+			i--;
+		}
+	}
 }
