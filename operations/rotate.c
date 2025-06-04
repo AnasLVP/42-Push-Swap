@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 19:17:30 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/01 17:07:39 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/06/04 11:03:39 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_ra(t_list **firsta)
 		temp->next = NULL;
 		ft_lstadd_back(firsta, temp);
 	}
-	printf("ra\n");
 }
 
 void	ft_rb(t_list **firstb)
@@ -39,7 +38,6 @@ void	ft_rb(t_list **firstb)
 		temp->next = NULL;
 		ft_lstadd_back(firstb, temp);
 	}
-	printf("rb\n");
 }
 
 void	ft_rr(t_list **firsta, t_list **firstb)

@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:52:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/01 17:17:18 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/06/04 19:48:13 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,24 @@ int		is_number(char *s);
 int		only_uniques(char **av, int size);
 int		parse_args(char **args);
 
+/*	count operations	*/
+int		ft_min(int a, int b);
+int		ft_max(int a, int b);
+int		total_ops(int *tab);
+void	apply_ops(int *tab, t_list **firsta, t_list **firstb);
+
 /*	lists	*/
 void	ft_lstswap(t_list **first);
 void	create_list(t_list **first, char **av, int ac);
 int		ft_lstsorted(t_list *first, int recurse);
 void	ft_lstnormalize(t_list **list);
-void	push_sublists(t_list **firsta, t_list **firstb, int maxrank,
-			int minrank);
+void	push_sublists(t_list **firsta, t_list **firstb, int listsize);
 int		lst_min(t_list *first);
 int		lst_max(t_list *first);
-void	rotate(void (*ra)(t_list **), void (*rra)(t_list **), t_list **first, int pos);
+void	rotate(void (*ra)(t_list **), void (*rra)(t_list **), t_list **first,
+			int pos);
 void	push_swap(t_list **firsta, t_list **firstb);
+int		insert_index(t_list *firstb, int value);
 
 /*	struct	*/
 typedef struct s_elem
