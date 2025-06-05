@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate.c                                        :+:      :+:    :+:   */
+/*   extremum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/01 17:12:49 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/01 17:17:06 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/06/05 15:16:32 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/06/05 15:17:04 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	rotate(void (*ra)(t_list **), void (*rra)(t_list **), t_list **first,
-		int pos)
+int	ft_min(int a, int b)
 {
-	int	i;
+	if (a < b)
+		return (a);
+	return (b);
+}
 
-	if (pos <= ft_lstsize(*first) / 2)
-	{
-		i = 1;
-		while (i < pos)
-		{
-			ra(first);
-			i++;
-		}
-	}
-	else
-	{
-		i = ft_lstsize(*first);
-		while (i >= pos)
-		{
-			rra(first);
-			i--;
-		}
-	}
+int	ft_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
 }

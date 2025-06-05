@@ -6,25 +6,11 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 19:31:02 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/04 19:47:31 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/06/05 15:23:15 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-int	ft_min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-
-int	ft_max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
 
 static void	tab_zero(int *tab, int i, int x)
 {
@@ -32,7 +18,7 @@ static void	tab_zero(int *tab, int i, int x)
 	tab[x] = 0;
 }
 
-int	total_ops(int *tab)
+void	total_ops(int *tab)
 {
 	int	min;
 
@@ -56,7 +42,30 @@ int	total_ops(int *tab)
 		tab_zero(tab, 1, 3);
 	if (min == ft_max(tab[1], tab[3]))
 		tab_zero(tab, 0, 2);
-	return (min);
+}
+
+static void	apply_all(int *tab, t_list **firsta, t_list **firstb)
+{
+	while (tab[0])
+	{
+		ft_ra(firsta);
+		tab[0]--;
+	}
+	while (tab[1])
+	{
+		ft_rra(firsta);
+		tab[1]--;
+	}
+	while (tab[2])
+	{
+		ft_rb(firstb);
+		tab[2]--;
+	}
+	while (tab[3])
+	{
+		ft_rrb(firstb);
+		tab[3]--;
+	}
 }
 
 //// [ra, rra, rb, rrb]
@@ -80,12 +89,5 @@ void	apply_ops(int *tab, t_list **firsta, t_list **firstb)
 			tab[3]--;
 		}
 	}
-	while (tab[0]--)
-		ft_ra(firsta);
-	while (tab[1]--)
-		ft_rra(firsta);
-	while (tab[2]--)
-		ft_rb(firstb);
-	while (tab[3]--)
-		ft_rrb(firstb);
+	apply_all(tab, firsta, firstb);
 }
