@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:56:03 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/06 21:24:14 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/06/06 22:54:01 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static void	sort_three(t_list **firsta)
 {
 	while (!ft_lstsorted(*firsta, 1))
 	{
-		if (((t_elem *)(*firsta)->content)->rank > ((t_elem *)(*firsta)->next->content)->rank)
+		if (((t_elem *)(*firsta)->content)->rank >
+			((t_elem *)(*firsta)->next->content)->rank)
 			ft_sa(firsta, 1);
 		else
 			ft_rra(firsta);
@@ -91,7 +92,8 @@ static void	push_back(t_list **firsta, t_list **firstb)
 	rotate_to_max(firstb, lst_max(*firstb));
 	while (*firstb && i < size)
 	{
-		if (((t_elem *)(*firstb)->content)->rank < ((t_elem *)(ft_lstlast(*firsta))->content)->rank)
+		if (((t_elem *)(*firstb)->content)->rank <
+			((t_elem *)(ft_lstlast(*firsta))->content)->rank)
 		{
 			ft_rra(firsta);
 			i++;

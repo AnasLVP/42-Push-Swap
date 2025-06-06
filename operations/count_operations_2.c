@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 15:26:54 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/05 15:27:11 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/06/06 22:53:18 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ int	min_operations(t_list *firsta, t_list *firstb)
 
 void	rotatelists(t_list **firsta, t_list **firstb, int index)
 {
-	t_list *temp;
-	int i;
-	int *tab;
+	t_list	*temp;
+	int		i;
+	int		*tab;
 
 	i = 0;
 	temp = *firsta;
