@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:52:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/07 12:25:44 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/06/07 14:56:30 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ void	ft_rrr(t_list **firsta, t_list **firstb);
 int		is_number(char *s);
 int		only_uniques(char **av, int size);
 int		parse_args(char **args);
+
+void	push_swap(t_list **firsta, t_list **firstb);
 
 #endif

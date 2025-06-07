@@ -7,7 +7,7 @@ OBJDIR	= obj
 SRCS	= operations/swap.c operations/rotate.c operations/rrotate.c operations/push.c operations/count_operation.c \
 			operations/extremum.c operations/count_operations_2.c parse_utils.c main.c sort_three.c \
 			lists/ft_lstswap.c lists/create_list.c lists/ft_lstsorted.c lists/ft_lstnormalize.c \
-			lists/lst_extremum.c lists/insert_index.c
+			lists/lst_extremum.c lists/insert_index.c push_swap.c
 
 OBJS	= $(patsubst %.c,$(OBJDIR)/%.o,$(SRCS))
 
@@ -22,12 +22,12 @@ all: $(NAME)
 
 # Compilation finale
 $(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $@
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $@ -g3
 
 # Compilation des objets dans obj/
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ -g3
 
 # Compilation de la libft
 $(LIBFT):

@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:56:03 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/07 14:11:29 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/06/07 15:42:40 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,81 +38,51 @@ static void	rotate_to_min(t_list **firsta, int min)
 	}
 }
 
-static void	rotate_to_max(t_list **firstb, int max)
-{
-	t_list	*temp;
-	int		i;
-
-	i = 0;
-	temp = *firstb;
-	while (temp)
-	{
-		if (((t_elem *)temp->content)->rank == max)
-			break ;
-		i++;
-		temp = temp->next;
-	}
-	if (i < ft_lstsize(*firstb) / 2)
-	{
-		while (((t_elem *)(*firstb)->content)->rank != max)
-			ft_rb(firstb);
-	}
-	else
-	{
-		while (((t_elem *)(*firstb)->content)->rank != max)
-			ft_rrb(firstb);
-	}
-}
-
-static void	push_back(t_list **firsta, t_list **firstb)
+static int	check_args(int ac, char ***av)
 {
 	int		i;
-	int		size;
+	char	**split;
+	char	*args;
 
-	size = ft_lstsize(*firsta);
 	i = 0;
-	if (size == 3)
-		sort_three(firsta);
-	else
-		rotate_to_min(firsta, lst_min(*firsta));
-	rotate_to_max(firstb, lst_max(*firstb));
-	while (*firstb && i < size)
+	if (ac == 2)
 	{
-		if (((t_elem *)(*firstb)->content)->rank <
-			((t_elem *)(ft_lstlast(*firsta))->content)->rank)
-		{
-			ft_rra(firsta);
+		args = ft_strjoin("push_swap ", (*av)[1]);
+		split = ft_split(args, ' ');
+		*av = split;
+		while (split[i])
 			i++;
-		}
-		else
-			ft_pa(firsta, firstb);
+		free(args);
+		return (i);
 	}
-	while (*firstb)
-		ft_pa(firsta, firstb);
-	rotate_to_min(firsta, lst_min(*firsta));
+	return (ac);
 }
 
-void	push_swap(t_list **firsta, t_list **firstb)
+static int	pars_args(int ac, char **av, int count)
 {
-	ft_pb(firsta, firstb);
-	ft_pb(firsta, firstb);
-	while (ft_lstsize(*firsta) > 3 || !ft_lstsorted(*firsta, 1))
-		rotatelists(firsta, firstb, (min_operations(*firsta, *firstb)));
-	push_back(firsta, firstb);
+	if (!parse_args(av) || !only_uniques(av, count - 1))
+	{
+		if (ac == 2)
+			ft_freeall(av);
+		return (write(2, "Error\n", 6));
+	}
+	return (0);
 }
 
 int	main(int ac, char **av)
 {
 	t_list	*firsta;
 	t_list	*firstb;
+	int		count;
 
 	firsta = NULL;
 	firstb = NULL;
 	if (ac == 1)
 		return (0);
-	if (!parse_args(av) || !only_uniques(av, ac - 1))
-		return (write(2, "Error\n", 6));
-	create_list(&firsta, av, ac);
+	count = check_args(ac, &av);
+	if (pars_args(ac, av, count))
+		return (0);
+	create_list(&firsta, av, count);
 	ft_lstnormalize(&firsta);
 	if (ft_lstsorted(firsta, 1))
 		rotate_to_min(&firsta, lst_min(firsta));
@@ -120,6 +90,8 @@ int	main(int ac, char **av)
 		push_swap(&firsta, &firstb);
 	else
 		sort_three(&firsta);
+	if (ac == 2)
+		ft_freeall(av);
 	ft_lstclear(&firsta, &free);
 	return (0);
 }

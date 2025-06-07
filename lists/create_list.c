@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 15:42:30 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/05/31 15:42:43 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/06/07 15:25:20 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	create_list(t_list **first, char **av, int ac)
 	t_list	*temp;
 	t_elem	*content;
 
-	i = 1;
+	i = 0;
 	while (i < ac)
 	{
 		content = malloc(sizeof(t_elem));
