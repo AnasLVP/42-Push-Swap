@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 15:43:07 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/06 19:05:46 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/06/07 17:01:52 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_lstsorted(t_list *first, int recurse)
 	int		nextelem;
 	int		firstvalue;
 
+	if (!first)
+		return (1);
 	firstvalue = ((t_elem *)(first)->content)->value;
 	while (first && first->next)
 	{
