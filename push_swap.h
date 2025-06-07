@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:52:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/06 22:53:15 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/06/07 12:25:44 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	apply_ops(int *tab, t_list **firsta, t_list **firstb);
 int		*operations(t_list *elem_a, t_list *firsta, t_list *firstb, int place);
 int		min_operations(t_list *firsta, t_list *firstb);
 void	rotatelists(t_list **firsta, t_list **firstb, int index);
+void	sort_three(t_list **firsta);
 
 /*	Push Swap Operations	*/
 void	ft_sa(t_list **first, int print);

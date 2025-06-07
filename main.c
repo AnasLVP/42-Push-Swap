@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:56:03 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/06 22:54:01 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/06/07 14:11:29 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,8 @@ static void	rotate_to_max(t_list **firstb, int max)
 	}
 }
 
-static void	sort_three(t_list **firsta)
-{
-	while (!ft_lstsorted(*firsta, 1))
-	{
-		if (((t_elem *)(*firsta)->content)->rank >
-			((t_elem *)(*firsta)->next->content)->rank)
-			ft_sa(firsta, 1);
-		else
-			ft_rra(firsta);
-	}
-	rotate_to_min(firsta, lst_min(*firsta));
-}
-
 static void	push_back(t_list **firsta, t_list **firstb)
 {
-	t_list	*temp;
 	int		i;
 	int		size;
 
@@ -103,6 +89,16 @@ static void	push_back(t_list **firsta, t_list **firstb)
 	}
 	while (*firstb)
 		ft_pa(firsta, firstb);
+	rotate_to_min(firsta, lst_min(*firsta));
+}
+
+void	push_swap(t_list **firsta, t_list **firstb)
+{
+	ft_pb(firsta, firstb);
+	ft_pb(firsta, firstb);
+	while (ft_lstsize(*firsta) > 3 || !ft_lstsorted(*firsta, 1))
+		rotatelists(firsta, firstb, (min_operations(*firsta, *firstb)));
+	push_back(firsta, firstb);
 }
 
 int	main(int ac, char **av)
@@ -119,15 +115,11 @@ int	main(int ac, char **av)
 	create_list(&firsta, av, ac);
 	ft_lstnormalize(&firsta);
 	if (ft_lstsorted(firsta, 1))
-	{
 		rotate_to_min(&firsta, lst_min(firsta));
-		return (0);
-	}
-	ft_pb(&firsta, &firstb);
-	ft_pb(&firsta, &firstb);
-	while (ft_lstsize(firsta) > 3 || !ft_lstsorted(firsta, 1))
-		rotatelists(&firsta, &firstb, (min_operations(firsta, firstb)));
-	push_back(&firsta, &firstb);
+	else if (ft_lstsize(firsta) > 3)
+		push_swap(&firsta, &firstb);
+	else
+		sort_three(&firsta);
 	ft_lstclear(&firsta, &free);
 	return (0);
 }
