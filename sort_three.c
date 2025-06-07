@@ -6,19 +6,21 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 12:24:21 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/07 12:26:35 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/06/07 17:03:21 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	rotate_to_min(t_list **firsta, int min)
+void	rotate_to_min(t_list **firsta, int min)
 {
 	t_list	*temp;
 	int		i;
 
 	i = 0;
 	temp = *firsta;
+	if (!temp)
+		return ;
 	while (temp)
 	{
 		if (((t_elem *)temp->content)->rank == min)
@@ -35,6 +37,34 @@ static void	rotate_to_min(t_list **firsta, int min)
 	{
 		while (((t_elem *)(*firsta)->content)->rank != min)
 			ft_rra(firsta);
+	}
+}
+
+void	rotate_to_max(t_list **firstb, int max)
+{
+	t_list	*temp;
+	int		i;
+
+	i = 0;
+	temp = *firstb;
+	if (!temp)
+		return ;
+	while (temp)
+	{
+		if (((t_elem *)temp->content)->rank == max)
+			break ;
+		i++;
+		temp = temp->next;
+	}
+	if (i < ft_lstsize(*firstb) / 2)
+	{
+		while (((t_elem *)(*firstb)->content)->rank != max)
+			ft_rb(firstb);
+	}
+	else
+	{
+		while (((t_elem *)(*firstb)->content)->rank != max)
+			ft_rrb(firstb);
 	}
 }
 

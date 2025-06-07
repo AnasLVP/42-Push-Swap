@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:52:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/06/07 12:25:44 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/06/07 16:58:52 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_lstnormalize(t_list **list);
 int		ft_lstsorted(t_list *first, int recurse);
 void	ft_lstswap(t_list **first);
 int		insert_index(t_list *firstb, int value);
+void	rotate_to_max(t_list **firstb, int max);
 
 /*	count operations	*/
 int		ft_min(int a, int b);
@@ -40,6 +41,7 @@ int		*operations(t_list *elem_a, t_list *firsta, t_list *firstb, int place);
 int		min_operations(t_list *firsta, t_list *firstb);
 void	rotatelists(t_list **firsta, t_list **firstb, int index);
 void	sort_three(t_list **firsta);
+void	rotate_to_min(t_list **firsta, int min);
 
 /*	Push Swap Operations	*/
 void	ft_sa(t_list **first, int print);
